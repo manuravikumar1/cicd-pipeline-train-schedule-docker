@@ -27,9 +27,13 @@ pipeline {
         }
         steps{
             script{
-                docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
-                    app.push("${env.BUILD_NUMBER}")
-                    app.push("latest")
+               docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
+    withCredentials([usernamePassword(credentialsId: 'docker_hub_login', usernameVariable: 'manuravi', passwordVariable: 'Galvatron@123')]) {
+        sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+        app.push("${env.BUILD_NUMBER}")
+        app.push("latest")
+    }
+}
                 }
             }
         }
