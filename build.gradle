@@ -24,7 +24,7 @@ task zip(type: Zip) {
 		include "views/**"
 	}
 	destinationDirectory.set(file('/var/lib/jenkins/workspace/train-schedule_master/dist'))
-	baseName "trainSchedule"
+	 archiveBaseName.set('trainSchedule')
 }
 
 //declare task dependencies
