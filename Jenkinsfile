@@ -13,6 +13,7 @@ pipeline {
                 branch 'master'
             }
             steps{
+                script{
                 app = docker.build("manu1/train-schedule")
                 app.inside{
                     sh 'echo $(curl localhost:8080)'
@@ -34,3 +35,5 @@ pipeline {
         }
     }
 }
+}
+
